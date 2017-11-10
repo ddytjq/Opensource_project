@@ -25,7 +25,7 @@ public class Main extends JFrame implements ActionListener{
 	private JButton button4;
 	private JPanel p1;
 	private JLabel main;
-	private Font font = new Font("궁서", Font.PLAIN, 22);
+	private Font font = new Font("궁서", Font.PLAIN, 23);
 	
 	public Main(){
 		main = new JLabel("학생증 관리 시스템");
@@ -45,7 +45,7 @@ public class Main extends JFrame implements ActionListener{
 		button3.addActionListener(this);
 		button4.addActionListener(this);
 		main.setFont(font);
-		main.setBounds(90,90,200,100);
+		main.setBounds(85,100,200,100);
 		button1.setBounds(89,230,90,38);
 		button2.setBounds(189,230,90,38);
 		button3.setBounds(89,280,90,38);
