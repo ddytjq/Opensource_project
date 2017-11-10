@@ -17,7 +17,25 @@ import javax.swing.UIManager;
 import javax.swing.table.AbstractTableModel;
 
 public class Form extends javax.swing.JFrame {
-
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField city;
+    private javax.swing.JMenuItem createConnection;
+    private javax.swing.JMenuItem exit;
+    private javax.swing.JPanel infoPanel;
+    private javax.swing.JButton insert;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField phone;
+    private javax.swing.JButton reset;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTable table;
+    // End of variables declaration//GEN-END:variables
+    
     private Connection mysqlCon = null;
     
     private final String database  = "notebook";
@@ -36,6 +54,7 @@ public class Form extends javax.swing.JFrame {
             y = d.height/2 - this.getHeight()/2;
         setLocation(x, y);
     }
+    
 
     @SuppressWarnings("unchecked")
 
@@ -258,28 +277,14 @@ public class Form extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_exitActionPerformed
 
-    public static void main(String args[]) {        
-        try{
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }catch(Exception e){            
-        }
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Form().setVisible(true);
-            }
-        });
-    }
-
     private void load() {
         try {
             // found jdbc driver for mysql
             Class.forName("com.mysql.jdbc.Driver");
             // create connection to mysql
-            String url   = "jdbc:mysql://localhost/",
+            String url   = "jdbc:mysql://localhost:3306/",
                    uname = "root",
-                   upass = mysqlPass;  // mysql password
+                   upass = "0813";  // mysql password
             
             mysqlCon = DriverManager.getConnection(url, uname, upass);
             
@@ -396,22 +401,4 @@ public class Form extends javax.swing.JFrame {
         
         return (emptyName || emptyCity || emptyPhone);
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField city;
-    private javax.swing.JMenuItem createConnection;
-    private javax.swing.JMenuItem exit;
-    private javax.swing.JPanel infoPanel;
-    private javax.swing.JButton insert;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JTextField name;
-    private javax.swing.JTextField phone;
-    private javax.swing.JButton reset;
-    private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JTable table;
-    // End of variables declaration//GEN-END:variables
 }
