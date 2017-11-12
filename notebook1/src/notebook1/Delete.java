@@ -114,7 +114,7 @@ public class Delete extends JFrame implements ActionListener{
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setLayout(new BorderLayout());
 
-		setSize(380,520);
+		setSize(380,508);
 		setTitle("Delete");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);

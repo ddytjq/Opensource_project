@@ -29,13 +29,12 @@ import javax.swing.border.EmptyBorder;
 
 
 
-public class Enroll extends JFrame implements ActionListener{
+public class Update extends JFrame implements ActionListener{
 	private JLabel col;
 	private JLabel dpt;
 	private JLabel name;
 	private JLabel id;
 	private JLabel phone;
-	private JLabel picture;
 	private JTextField coltext;
 	private JTextField dpttext;
 	private JTextField nametext;
@@ -49,12 +48,13 @@ public class Enroll extends JFrame implements ActionListener{
 	private JLabel photo;
 	private ImageIcon image;
 	private JFileChooser jf = new JFileChooser();
-	private JButton pc;
 	private JPanel panel_1;
 	private BufferedImage big;
+	private JTextField searchtext;
+	private JButton searchbutton;
 
-	
-	public Enroll(){
+
+	public Update(){
 		button1 = new JButton("OK");
 		button1.setFont(new Font("Gill Sans MT", Font.PLAIN, 20));
 		button2 = new JButton("Cancel");
@@ -71,31 +71,29 @@ public class Enroll extends JFrame implements ActionListener{
 		button1.setBounds(75,394,90,42);
 		button2.setBounds(203,394,90,42);
 		getContentPane().add(p1);
-		
+
 		panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBackground(new Color(250, 240, 230));
+		panel.setBackground(new Color(255, 192, 203));
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 362, 71);
 		p1.add(panel);
-		
-		lblDelete = new JLabel("Enroll");
+
+		lblDelete = new JLabel("Update");
 		lblDelete.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDelete.setFont(new Font("Brush Script MT", Font.PLAIN, 36));
-		lblDelete.setBounds(57, 20, 239, 39);
+		lblDelete.setBounds(63, 20, 239, 39);
 		panel.add(lblDelete);
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBackground(new Color(255, 250, 240));
+		panel_1.setBackground(new Color(255, 240, 245));
 		panel_1.setLayout(null);
-		panel_1.setBounds(14, 83, 334, 299);
+		panel_1.setBounds(14, 145, 334, 237);
 		p1.add(panel_1);
 		col = new JLabel("College : ");
 		col.setFont(new Font("Gill Sans MT", Font.PLAIN, 17));
 		panel_1.add(col);
-		coltext = new JTextField(10);
-		panel_1.add(coltext);
 		dpt = new JLabel("Department : ");
 		dpt.setFont(new Font("Gill Sans MT", Font.PLAIN, 15));
 		panel_1.add(dpt);
@@ -116,72 +114,58 @@ public class Enroll extends JFrame implements ActionListener{
 		panel_1.add(phone);
 		phonetext = new JTextField(10);
 		panel_1.add(phonetext);
-		picture = new JLabel("Picture : ");
-		picture.setFont(new Font("Gill Sans MT", Font.PLAIN, 17));
-		panel_1.add(picture);
-		picture.setBounds(43,23,70,50);
-		col.setBounds(43,71,70,50);
-		coltext.setBounds(137,82,154,30);
-		dpt.setBounds(43,115,88,50);
-		dpttext.setBounds(137,208,154,30);
-		id.setBounds(43,156,99,50);
-		idtext.setBounds(137,166,154,30);
-		phone.setBounds(43,239,70,50);
-		phonetext.setBounds(137,125,154,30);
-		name.setBounds(43,197,70,50);
-		nametext.setBounds(137,250,154,30);
-		pc = new JButton("IN");
-		pc.setFont(new Font("Gill Sans MT", Font.PLAIN, 13));
-		panel_1.add(pc);
-		pc.setBounds(246,40,45,30);
-		pc.addActionListener(this);
+		col.setBounds(43,11,70,50);
+		dpt.setBounds(43,54,88,50);
+		dpttext.setBounds(137,148,154,30);
+		id.setBounds(43,96,99,50);
+		idtext.setBounds(137,106,154,30);
+		phone.setBounds(43,179,70,50);
+		phonetext.setBounds(137,64,154,30);
+		name.setBounds(43,137,70,50);
+		nametext.setBounds(137,190,154,30);
+		searchtext = new JTextField(10);
+		searchtext.setBounds(137, 22, 154, 28);
+		panel_1.add(searchtext);
+
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBackground(new Color(255, 240, 245));
+		panel_2.setLayout(null);
+		panel_2.setBounds(14, 85, 334, 48);
+		p1.add(panel_2);
+
+		JLabel lblSearch = new JLabel("Search : ");
+		lblSearch.setFont(new Font("Gill Sans MT", Font.PLAIN, 17));
+		lblSearch.setBounds(43,0,70,48);
+		panel_2.add(lblSearch);
+		coltext = new JTextField(10);
+		coltext.setBounds(137, 10, 116, 28);
+		searchbutton = new JButton("IN");
+		searchbutton.setFont(new Font("Gill Sans MT", Font.PLAIN, 13));
+		searchbutton.setBounds(261,9,45,30);
+		searchbutton.addActionListener(this);
+		panel_2.add(searchbutton);
+		panel_2.add(coltext);
 		setSize(380,508);
 		setTitle("Enroll");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
+
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = d.width/2 - this.getWidth()/2,
-            y = d.height/2 - this.getHeight()/2;
-        setLocation(x, y);	
+		int x = d.width/2 - this.getWidth()/2,
+				y = d.height/2 - this.getHeight()/2;
+		setLocation(x, y);	
 
 	}
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource().equals(button1)){
-			String a = idtext.getText();
-			String b = nametext.getText();
-			ResultSet result = null;
-			try{
-				if(result.next())
-				{
-					JOptionPane.showMessageDialog(this, "회원삭제 완료"+"\n"+"아이디 : '"+a+"'");
-				}
-				else{
-					JOptionPane.showMessageDialog(this, "존재하지 않는 아이디입니다.");
-				}
-			} catch (SQLException e2) {
-				e2.printStackTrace();
-			}
+
 		}
 		else if(e.getSource().equals(button2)){
 			JOptionPane.showMessageDialog(this, "Cancel!!!!");
 			new Main();
 		}
-		else if(e.getSource().equals(pc)) {
-			if(jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-				try {
-					big = ImageIO.read(new File(jf.getSelectedFile().toString()));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			image = new ImageIcon(big);
-			Image a = image.getImage();
-			Image b = a.getScaledInstance(1, 1, Image.SCALE_SMOOTH);
-			photo = new JLabel(new ImageIcon(big));
-			panel_1.add(photo);
-			photo.setBounds(137,12,99,55);
+		else if(e.getSource().equals(searchbutton)){
 		}
 	}
 }

@@ -97,7 +97,7 @@ public class Main extends JFrame implements ActionListener{
 		lblNewLabel.setFont(new Font("Brush Script MT", Font.BOLD, 25));
 		panel.add(lblNewLabel);
 		lblNewLabel.setBounds(14,12,333,78);
-		setSize(380,520);
+		setSize(380,508);
 		setTitle("System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -118,7 +118,7 @@ public class Main extends JFrame implements ActionListener{
 			new Delete();
 		}
 		else if(e.getSource().equals(button3)){
-			new Form().setVisible(true);
+			new Update();
 		}
 		else if(e.getSource().equals(button4)){
 			new Form().setVisible(true);
