@@ -39,7 +39,7 @@ public class Main extends JFrame implements ActionListener{
 		button2.setBackground(Color.WHITE);
 		button2.setFont(new Font("Sitka Text", Font.PLAIN, 14));
 		button3 = new JButton();
-		button3.setIcon(new ImageIcon(Main.class.getResource("/notebook1/picture/CHANGE.png")));
+		button3.setIcon(new ImageIcon(Main.class.getResource("/notebook1/picture/UPDATE.PNG")));
 		button3.setForeground(Color.BLACK);
 		button3.setFont(new Font("Sitka Text", Font.PLAIN, 13));
 		button4 = new JButton();

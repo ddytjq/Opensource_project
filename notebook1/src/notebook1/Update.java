@@ -147,7 +147,7 @@ public class Update extends JFrame implements ActionListener{
 		panel_2.add(searchbutton);
 		panel_2.add(coltext);
 		setSize(380,508);
-		setTitle("Enroll");
+		setTitle("Update");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 
