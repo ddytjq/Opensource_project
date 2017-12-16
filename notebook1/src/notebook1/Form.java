@@ -236,7 +236,7 @@ public class Form extends JFrame implements ActionListener {
 
 	}
 
-	private boolean isEmpty2() { // 검색박스
+	private boolean isEmpty2() { 
 		boolean emptysearch = searchtext.getText().equals("");
 
 		return (emptysearch);
