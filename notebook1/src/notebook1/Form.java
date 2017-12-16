@@ -180,12 +180,12 @@ public class Form extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(button1)) {
 			searchtext.setText("");
-			model.setNumRows(0);
 			rdbtnCollage.setSelected(false);
 			rdbtnNewRadioButton.setSelected(false);
 			rdbtnStudentId.setSelected(false);
 			rdbtnNewRadioButton_1.setSelected(false);
 			rdbtnNewRadioButton_2.setSelected(false);
+			rdbtnAll.setSelected(false);
 		}
 
 		else if (e.getSource().equals(button2)) {
@@ -201,9 +201,11 @@ public class Form extends JFrame implements ActionListener {
 			PreparedStatement pstm = null;
 			try {
 				if (isEmpty2()) {
+					model.setNumRows(0);
 					sqlStr = "SELECT COLLEGE, DEPARTMENT, STUDENT_ID, NAME, PHONE FROM " + tableName;
 					pstm = this.mysqlCon.prepareStatement(sqlStr);
 				} else {
+					model.setNumRows(0);
 					sqlStr = "SELECT COLLEGE, DEPARTMENT, STUDENT_ID, NAME, PHONE FROM " + tableName
 							+ " WHERE (COLLEGE = ? or DEPARTMENT = ? or STUDENT_ID = ? or NAME = ? or PHONE = ?)";
 					pstm = this.mysqlCon.prepareStatement(sqlStr);
@@ -212,6 +214,7 @@ public class Form extends JFrame implements ActionListener {
 					pstm.setObject(3, searchtext.getText());
 					pstm.setObject(4, searchtext.getText());
 					pstm.setObject(5, searchtext.getText());
+
 				}
 
 				result = pstm.executeQuery();

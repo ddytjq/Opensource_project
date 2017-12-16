@@ -113,12 +113,16 @@ public class Main extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(button1)) {
 			new Enroll();
+			dispose();
 		} else if (e.getSource().equals(button2)) {
 			new Delete();
+			dispose();
 		} else if (e.getSource().equals(button3)) {
 			new Update();
+			dispose();
 		} else if (e.getSource().equals(button4)) {
 			new Form().setVisible(true);
+			dispose();
 		}
 
 	}
