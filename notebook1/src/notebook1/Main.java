@@ -1,4 +1,5 @@
 package notebook1;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-public class Main extends JFrame implements ActionListener{
+public class Main extends JFrame implements ActionListener {
 	private JLabel id;
 	private JLabel pw;
 	private JButton button1;
@@ -27,7 +28,8 @@ public class Main extends JFrame implements ActionListener{
 	private JPanel p1;
 	private Font font = new Font("±Ã¼­", Font.PLAIN, 22);
 	private JLabel lblNewLabel;
-	public Main(){
+
+	public Main() {
 		button1 = new JButton();
 		button1.setIcon(new ImageIcon(Main.class.getResource("/notebook1/picture/ENROLL.png")));
 		button1.setFont(new Font("Sitka Text", Font.PLAIN, 14));
@@ -57,13 +59,13 @@ public class Main extends JFrame implements ActionListener{
 		button2.addActionListener(this);
 		button3.addActionListener(this);
 		button4.addActionListener(this);
-		button1.setBounds(74,333,98,48);
-		button2.setBounds(199,333,98,48);
-		button3.setBounds(74,393,98,48);
-		button4.setBounds(199,393,98,48);
+		button1.setBounds(74, 333, 98, 48);
+		button2.setBounds(199, 333, 98, 48);
+		button3.setBounds(74, 393, 98, 48);
+		button4.setBounds(199, 393, 98, 48);
 
 		getContentPane().add(p1);
-		
+
 		JLabel label1 = new JLabel();
 		JLabel label2 = new JLabel();
 		JLabel label3 = new JLabel();
@@ -82,13 +84,13 @@ public class Main extends JFrame implements ActionListener{
 		label1.setBounds(50, 160, 110, 114);
 		label2.setBounds(178, 213, 31, 38);
 		label3.setBounds(223, 185, 80, 89);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBackground(new Color(0, 153, 255));
 		panel.setBounds(0, 0, 362, 101);
 		p1.add(panel);
-		
+
 		panel.setLayout(null);
 		lblNewLabel = new JLabel("Student ID Management System!");
 		lblNewLabel.setBackground(new Color(51, 102, 255));
@@ -96,34 +98,28 @@ public class Main extends JFrame implements ActionListener{
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Brush Script MT", Font.BOLD, 25));
 		panel.add(lblNewLabel);
-		lblNewLabel.setBounds(14,12,333,78);
-		setSize(380,508);
+		lblNewLabel.setBounds(14, 12, 333, 78);
+		setSize(380, 508);
 		setTitle("System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
 
-
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = d.width/2 - this.getWidth()/2,
-            y = d.height/2 - this.getHeight()/2;
-        setLocation(x, y);	
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = d.width / 2 - this.getWidth() / 2, y = d.height / 2 - this.getHeight() / 2;
+		setLocation(x, y);
 
 	}
-	public void actionPerformed(ActionEvent e){
-		if(e.getSource().equals(button1)){
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(button1)) {
 			new Enroll();
-		}
-		else if(e.getSource().equals(button2)){
+		} else if (e.getSource().equals(button2)) {
 			new Delete();
-		}
-		else if(e.getSource().equals(button3)){
+		} else if (e.getSource().equals(button3)) {
 			new Update();
-		}
-		else if(e.getSource().equals(button4)){
+		} else if (e.getSource().equals(button4)) {
 			new Form().setVisible(true);
 		}
 
 	}
 }
-

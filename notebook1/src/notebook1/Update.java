@@ -61,7 +61,8 @@ public class Update extends JFrame implements ActionListener {
 	private final String mysqlPass = "";
 
 	private final String INSERT_STMT = "INSERT INTO " + tableName + " VALUES(?, ?, ?, ?, ?)";
-	private final String UPDATE_STMT = "UPDATE " + tableName + " SET COLLEGE=?, DEPARTMENT=?, NAME=?, PHONE=? WHERE STUDENT_ID=?";
+	private final String UPDATE_STMT = "UPDATE " + tableName
+			+ " SET COLLEGE=?, DEPARTMENT=?, NAME=?, PHONE=? WHERE STUDENT_ID=?";
 
 	public Update() {
 		button1 = new JButton("OK");
@@ -178,8 +179,7 @@ public class Update extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(this, "UPDATE");
 					new Main();
 					dispose();
-				}
-				else
+				} else
 					throw new Exception("An error occure at inserting!!");
 
 			} catch (Exception e1) {

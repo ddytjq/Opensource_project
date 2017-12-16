@@ -162,21 +162,20 @@ public class Enroll extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(this, "INSERT");
 					new Main();
 					dispose();
-				}
-				else
+				} else
 					throw new Exception("An error occure at inserting!!");
 
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(this, e1.getMessage());
 			}
-		} 
-		
+		}
+
 		else if (e.getSource().equals(button2)) {
 			JOptionPane.showMessageDialog(this, "Cancel");
 			new Main();
 			dispose();
-		} 
-		
+		}
+
 		else if (e.getSource().equals(pc)) {
 			load();
 			if (jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -209,10 +208,10 @@ public class Enroll extends JFrame implements ActionListener {
 		pstm.setObject(5, phonetext.getText().trim());
 
 		int result = pstm.executeUpdate();
-		
+
 		return (result > 0);
 	}
-	
+
 	private boolean isEmpty() {
 		boolean emptycol = coltext.getText().equals("");
 		boolean emptydep = dpttext.getText().equals("");
@@ -222,7 +221,7 @@ public class Enroll extends JFrame implements ActionListener {
 
 		return (emptycol || emptydep || emptyid || emptyname || emptyphone);
 	}
-	
+
 	private void load() {
 		try {
 			// found jdbc driver for mysql
@@ -231,7 +230,7 @@ public class Enroll extends JFrame implements ActionListener {
 			String url = "jdbc:mysql://localhost:3306/", uname = "root", upass = "0813"; // mysql password
 
 			mysqlCon = DriverManager.getConnection(url, uname, upass);
-			
+
 			button1.setEnabled(true);
 
 			// set database

@@ -49,7 +49,7 @@ public class Form extends JFrame implements ActionListener {
 	private JButton searchbutton;
 	private JTable table;
 	private DefaultTableModel model;
-	private String title[] = {"COL", "DEP", "ID", "NAME", "TEL"};
+	private String title[] = { "COL", "DEP", "ID", "NAME", "TEL" };
 	private String arr[] = new String[5];
 	private JRadioButton rdbtnCollage;
 	private JRadioButton rdbtnNewRadioButton;
@@ -62,9 +62,10 @@ public class Form extends JFrame implements ActionListener {
 	private final String database = "notebook";
 	private final String tableName = database + ".student_card";
 	private final String mysqlPass = "";
-	String str=null;
+	String str = null;
 	String a;
 	int i;
+	private JRadioButton rdbtnAll;
 
 	public Form() {
 		model = new DefaultTableModel(title, 0);
@@ -99,22 +100,25 @@ public class Form extends JFrame implements ActionListener {
 		panel.add(lblDelete);
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBackground(new Color(204, 255, 204));
 		panel_1.setLayout(null);
 		panel_1.setBounds(14, 212, 334, 170);
 		p1.add(panel_1);
 		table = new JTable(model);
 		table.setModel(model);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrollPane.setViewportBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "",
+				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		scrollPane.setBounds(14, 12, 306, 140);
 		scrollPane.setViewportView(table);
 		panel_1.add(scrollPane);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_2.setBackground(new Color(204, 255, 204));
 		panel_2.setLayout(null);
 		panel_2.setBounds(14, 85, 334, 115);
@@ -132,31 +136,36 @@ public class Form extends JFrame implements ActionListener {
 		searchtext = new JTextField(10);
 		searchtext.setBounds(105, 78, 135, 28);
 		panel_2.add(searchtext);
-		
+
 		rdbtnCollage = new JRadioButton("collage");
 		rdbtnCollage.setBackground(new Color(204, 255, 204));
 		rdbtnCollage.setBounds(10, 8, 75, 27);
 		panel_2.add(rdbtnCollage);
-		
+
 		rdbtnNewRadioButton = new JRadioButton("department");
 		rdbtnNewRadioButton.setBackground(new Color(204, 255, 204));
 		rdbtnNewRadioButton.setBounds(105, 8, 104, 27);
 		panel_2.add(rdbtnNewRadioButton);
-		
+
 		rdbtnStudentId = new JRadioButton("student ID");
 		rdbtnStudentId.setBackground(new Color(204, 255, 204));
 		rdbtnStudentId.setBounds(223, 8, 101, 27);
 		panel_2.add(rdbtnStudentId);
-		
+
 		rdbtnNewRadioButton_1 = new JRadioButton("name");
 		rdbtnNewRadioButton_1.setBackground(new Color(204, 255, 204));
 		rdbtnNewRadioButton_1.setBounds(10, 39, 80, 27);
 		panel_2.add(rdbtnNewRadioButton_1);
-		
+
 		rdbtnNewRadioButton_2 = new JRadioButton("phone");
 		rdbtnNewRadioButton_2.setBackground(new Color(204, 255, 204));
 		rdbtnNewRadioButton_2.setBounds(105, 39, 88, 27);
 		panel_2.add(rdbtnNewRadioButton_2);
+
+		rdbtnAll = new JRadioButton("all");
+		rdbtnAll.setBackground(new Color(204, 255, 204));
+		rdbtnAll.setBounds(223, 42, 139, 27);
+		panel_2.add(rdbtnAll);
 		setSize(380, 508);
 		setTitle("Search");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -187,28 +196,33 @@ public class Form extends JFrame implements ActionListener {
 
 		else if (e.getSource().equals(searchbutton)) {
 			load();
+			String sqlStr;
+			ResultSet result;
+			PreparedStatement pstm = null;
 			try {
-				if (isEmpty2())
-					throw new Exception("Please enter all data!!");
+				if (isEmpty2()) {
+					sqlStr = "SELECT COLLEGE, DEPARTMENT, STUDENT_ID, NAME, PHONE FROM " + tableName;
+					pstm = this.mysqlCon.prepareStatement(sqlStr);
+				} else {
+					sqlStr = "SELECT COLLEGE, DEPARTMENT, STUDENT_ID, NAME, PHONE FROM " + tableName
+							+ " WHERE (COLLEGE = ? or DEPARTMENT = ? or STUDENT_ID = ? or NAME = ? or PHONE = ?)";
+					pstm = this.mysqlCon.prepareStatement(sqlStr);
+					pstm.setObject(1, searchtext.getText());
+					pstm.setObject(2, searchtext.getText());
+					pstm.setObject(3, searchtext.getText());
+					pstm.setObject(4, searchtext.getText());
+					pstm.setObject(5, searchtext.getText());
+				}
 
-				String sqlStr = "SELECT COLLEGE, DEPARTMENT, STUDENT_ID, NAME, PHONE FROM " + tableName
-						+ " WHERE (COLLEGE = ? or DEPARTMENT = ? or STUDENT_ID = ? or NAME = ? or PHONE = ?)";
-				PreparedStatement pstm = this.mysqlCon.prepareStatement(sqlStr);
-				pstm.setObject(1, searchtext.getText());
-				pstm.setObject(2, searchtext.getText());
-				pstm.setObject(3, searchtext.getText());
-				pstm.setObject(4, searchtext.getText());
-				pstm.setObject(5, searchtext.getText());
-
-				ResultSet result = pstm.executeQuery();
+				result = pstm.executeQuery();
 
 				while (result.next()) {
-					str=result.getString(1);
-					
-					arr[0]=str;
-					for(i=2; i<6; i++) {
-						a=result.getString(i);
-						arr[i-1]=a+"";
+					str = result.getString(1);
+
+					arr[0] = str;
+					for (i = 2; i < 6; i++) {
+						a = result.getString(i);
+						arr[i - 1] = a + "";
 					}
 					model.addRow(arr);
 				}
