@@ -14,7 +14,7 @@ public class Test {
 			public void run() {
 				new Main().setVisible(true);
 			}
-		});
+		}
+		);
 	}
-
 }

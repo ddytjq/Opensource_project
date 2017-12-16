@@ -167,7 +167,7 @@ public class Form extends JFrame implements ActionListener {
 		rdbtnAll.setBounds(223, 42, 139, 27);
 		panel_2.add(rdbtnAll);
 		setSize(380, 508);
-		setTitle("Search");
+		setTitle("Check");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 
@@ -236,7 +236,7 @@ public class Form extends JFrame implements ActionListener {
 
 	}
 
-	private boolean isEmpty2() { 
+	private boolean isEmpty2() {
 		boolean emptysearch = searchtext.getText().equals("");
 
 		return (emptysearch);

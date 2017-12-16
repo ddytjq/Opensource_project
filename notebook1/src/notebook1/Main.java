@@ -124,6 +124,5 @@ public class Main extends JFrame implements ActionListener {
 			new Form().setVisible(true);
 			dispose();
 		}
-
 	}
 }
