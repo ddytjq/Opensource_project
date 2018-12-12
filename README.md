@@ -1,5 +1,4 @@
-### class : open source software
-### student card management system
+### Student card management system
 
 * language : java 9.0.1
 * db : mysql
